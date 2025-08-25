@@ -1,58 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Stranger Things Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Stranger Things Color Palette */
+    --st-background: 0 0% 6%;
+    --st-foreground: 120 100% 75%;
+    
+    /* Terminal Colors */
+    --st-terminal-bg: 0 0% 8%;
+    --st-terminal-border: 120 100% 50%;
+    --st-terminal-text: 120 100% 75%;
+    --st-terminal-cursor: 120 100% 85%;
+    
+    /* Neon Colors */
+    --st-neon-green: 120 100% 50%;
+    --st-neon-red: 0 100% 50%;
+    --st-neon-blue: 240 100% 50%;
+    
+    /* Dark Palette */
+    --st-dark-red: 0 100% 27%;
+    --st-dark-blue: 240 100% 25%;
+    --st-shadow: 0 0% 0%;
+    
+    /* Interactive States */
+    --st-hover: 120 100% 60%;
+    --st-active: 120 100% 40%;
+    --st-disabled: 0 0% 30%;
+    
+    /* UI Elements */
+    --st-border: 120 50% 25%;
+    --st-muted: 120 20% 40%;
+    --st-accent: 120 100% 65%;
+    
+    /* Loading & Progress */
+    --st-progress-bg: 0 0% 15%;
+    --st-progress-fill: 120 100% 50%;
+    
+    --radius: 0.25rem;
+    
+    /* Glow Effects */
+    --st-glow-sm: 0 0 10px hsl(var(--st-neon-green) / 0.5);
+    --st-glow-md: 0 0 20px hsl(var(--st-neon-green) / 0.7);
+    --st-glow-lg: 0 0 40px hsl(var(--st-neon-green) / 0.8);
+    
+    /* Animations */
+    --st-flicker-duration: 0.15s;
+    --st-typewriter-speed: 0.05s;
+    --st-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
@@ -94,12 +94,145 @@ All colors MUST be HSL.
   }
 }
 
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-st-background text-st-foreground font-mono;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Terminal Component Styles */
+  .st-terminal {
+    @apply bg-st-terminal-bg border border-st-terminal-border rounded;
+    box-shadow: var(--st-glow-md), inset 0 0 20px hsl(var(--st-shadow) / 0.8);
+  }
+  
+  .st-terminal-text {
+    @apply text-st-terminal-text font-mono leading-relaxed;
+    text-shadow: var(--st-glow-sm);
+  }
+  
+  /* Button Variants */
+  .st-button {
+    @apply bg-transparent border border-st-border text-st-foreground px-4 py-2 rounded font-mono uppercase tracking-wider;
+    transition: var(--st-transition);
+    text-shadow: var(--st-glow-sm);
+    box-shadow: inset 0 0 10px hsl(var(--st-shadow) / 0.5);
+  }
+  
+  .st-button:hover {
+    @apply border-st-hover text-st-hover;
+    box-shadow: var(--st-glow-md), inset 0 0 10px hsl(var(--st-hover) / 0.2);
+  }
+  
+  .st-button:active {
+    @apply border-st-active text-st-active;
+    box-shadow: var(--st-glow-sm), inset 0 0 15px hsl(var(--st-active) / 0.3);
+  }
+  
+  .st-button:disabled {
+    @apply border-st-disabled text-st-disabled cursor-not-allowed;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  
+  /* Loading Components */
+  .st-loading-overlay {
+    @apply fixed inset-0 bg-st-background flex items-center justify-center z-50;
+    background: radial-gradient(ellipse at center, hsl(var(--st-background)) 0%, hsl(var(--st-shadow)) 100%);
+  }
+  
+  .st-progress-bar {
+    @apply w-full h-1 bg-st-progress-bg rounded-full overflow-hidden;
+    box-shadow: inset 0 0 10px hsl(var(--st-shadow) / 0.8);
+  }
+  
+  .st-progress-fill {
+    @apply h-full bg-st-progress-fill rounded-full;
+    box-shadow: var(--st-glow-sm);
+    transition: width 0.3s ease-out;
+  }
+  
+  /* Typewriter Effect */
+  .st-typewriter::after {
+    content: '█';
+    @apply text-st-terminal-cursor;
+    animation: st-cursor-blink 1s infinite;
+  }
+  
+  /* Flickering Text */
+  .st-flicker {
+    animation: st-flicker var(--st-flicker-duration) infinite linear alternate;
+  }
+  
+  /* Neon Glow Text */
+  .st-neon-text {
+    @apply text-st-neon-green;
+    text-shadow: var(--st-glow-lg);
+    filter: brightness(1.2);
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframes */
+  @keyframes st-cursor-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  @keyframes st-flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow: var(--st-glow-sm);
+      opacity: 1;
+    }
+    20%, 24%, 55% {
+      text-shadow: none;
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes st-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes st-slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes st-pulse-glow {
+    0%, 100% {
+      box-shadow: var(--st-glow-sm);
+    }
+    50% {
+      box-shadow: var(--st-glow-lg);
+    }
+  }
+  
+  @keyframes st-loading-dots {
+    0%, 20% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75%, 100% { content: '...'; }
   }
 }

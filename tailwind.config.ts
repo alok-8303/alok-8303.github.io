@@ -19,6 +19,7 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Original shadcn colors
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -52,6 +53,29 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				
+				// Stranger Things themed colors
+				'st-background': 'hsl(var(--st-background))',
+				'st-foreground': 'hsl(var(--st-foreground))',
+				'st-terminal-bg': 'hsl(var(--st-terminal-bg))',
+				'st-terminal-border': 'hsl(var(--st-terminal-border))',
+				'st-terminal-text': 'hsl(var(--st-terminal-text))',
+				'st-terminal-cursor': 'hsl(var(--st-terminal-cursor))',
+				'st-neon-green': 'hsl(var(--st-neon-green))',
+				'st-neon-red': 'hsl(var(--st-neon-red))',
+				'st-neon-blue': 'hsl(var(--st-neon-blue))',
+				'st-dark-red': 'hsl(var(--st-dark-red))',
+				'st-dark-blue': 'hsl(var(--st-dark-blue))',
+				'st-shadow': 'hsl(var(--st-shadow))',
+				'st-hover': 'hsl(var(--st-hover))',
+				'st-active': 'hsl(var(--st-active))',
+				'st-disabled': 'hsl(var(--st-disabled))',
+				'st-border': 'hsl(var(--st-border))',
+				'st-muted': 'hsl(var(--st-muted))',
+				'st-accent': 'hsl(var(--st-accent))',
+				'st-progress-bg': 'hsl(var(--st-progress-bg))',
+				'st-progress-fill': 'hsl(var(--st-progress-fill))',
+				
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +86,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			fontFamily: {
+				mono: ['Share Tech Mono', 'Courier New', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +111,58 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'st-cursor-blink': {
+					'0%, 50%': { opacity: '1' },
+					'51%, 100%': { opacity: '0' }
+				},
+				'st-flicker': {
+					'0%, 18%, 22%, 25%, 53%, 57%, 100%': {
+						opacity: '1',
+						filter: 'brightness(1)'
+					},
+					'20%, 24%, 55%': {
+						opacity: '0.7',
+						filter: 'brightness(0.8)'
+					}
+				},
+				'st-fade-in': {
+					'from': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'to': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'st-slide-in-right': {
+					'from': {
+						transform: 'translateX(100%)',
+						opacity: '0'
+					},
+					'to': {
+						transform: 'translateX(0)',
+						opacity: '1'
+					}
+				},
+				'st-pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 10px hsl(var(--st-neon-green) / 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsl(var(--st-neon-green) / 0.8)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'st-cursor-blink': 'st-cursor-blink 1s infinite',
+				'st-flicker': 'st-flicker 0.15s infinite linear alternate',
+				'st-fade-in': 'st-fade-in 0.6s ease-out',
+				'st-slide-in-right': 'st-slide-in-right 0.5s ease-out',
+				'st-pulse-glow': 'st-pulse-glow 2s ease-in-out infinite'
 			}
 		}
 	},
