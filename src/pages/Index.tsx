@@ -63,7 +63,7 @@ const Index = () => {
               <Terminal
                 content={getIntroContent()}
                 onComplete={handleIntroComplete}
-                typingSpeed={30}
+                typingSpeed={15}
               />
             ) : activeSection && !isTyping ? (
               <div className="space-y-6">
