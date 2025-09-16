@@ -9,6 +9,7 @@ interface DetailedContentRendererProps {
 const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
   const [showingDetails, setShowingDetails] = useState<number | null>(null);
+  const [hasTypedMainContent, setHasTypedMainContent] = useState(false);
 
   const data = section === 'experience' ? experiences : projects;
   const title = section === 'experience' ? '> PROFESSIONAL EXPERIENCE' : '> PROJECT ARCHIVE';
@@ -75,6 +76,10 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
     setShowingDetails(null);
   };
 
+  const handleMainContentComplete = () => {
+    setHasTypedMainContent(true);
+  };
+
   if (showingDetails !== null) {
     return (
       <div className="space-y-4">
@@ -98,7 +103,8 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
     <div className="space-y-4">
       <Terminal 
         content={generateHeadingsContent()}
-        typingSpeed={10}
+        typingSpeed={hasTypedMainContent ? 0 : 10}
+        onComplete={handleMainContentComplete}
       />
       <div className="grid gap-2 mt-4">
         {data.map((_, index) => (
