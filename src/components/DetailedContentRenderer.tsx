@@ -10,6 +10,7 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
   const [showingDetails, setShowingDetails] = useState<number | null>(null);
   const [hasTypedMainContent, setHasTypedMainContent] = useState(false);
+  const [mainContentCache, setMainContentCache] = useState<string[] | null>(null);
 
   const data = section === 'experience' ? experiences : projects;
   const title = section === 'experience' ? '> PROFESSIONAL EXPERIENCE' : '> PROJECT ARCHIVE';
@@ -78,6 +79,7 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
 
   const handleMainContentComplete = () => {
     setHasTypedMainContent(true);
+    setMainContentCache(generateHeadingsContent());
   };
 
   if (showingDetails !== null) {
@@ -102,7 +104,7 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
   return (
     <div className="space-y-4">
       <Terminal 
-        content={generateHeadingsContent()}
+        content={mainContentCache || generateHeadingsContent()}
         typingSpeed={hasTypedMainContent ? 0 : 10}
         onComplete={handleMainContentComplete}
       />

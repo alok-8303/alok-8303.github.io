@@ -10,6 +10,7 @@ const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isTyping, setIsTyping] = useState(false);
+  const [hasTypedIntro, setHasTypedIntro] = useState(false);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -17,6 +18,7 @@ const Index = () => {
 
   const handleIntroComplete = () => {
     setIsTyping(false);
+    setHasTypedIntro(true);
   };
 
   const handleSectionSelect = (section: string) => {
@@ -63,7 +65,7 @@ const Index = () => {
               <Terminal
                 content={getIntroContent()}
                 onComplete={handleIntroComplete}
-                typingSpeed={10}
+                typingSpeed={hasTypedIntro ? 0 : 10}
               />
             ) : activeSection && !isTyping ? (
               <div className="space-y-6">
