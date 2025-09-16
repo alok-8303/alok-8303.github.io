@@ -78,13 +78,15 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
   if (showingDetails !== null) {
     return (
       <div className="space-y-4">
-        <Terminal 
-          content={generateDetailContent(showingDetails)}
-          typingSpeed={10}
-        />
+        <div className="st-terminal border-2 border-st-terminal-border bg-st-terminal-bg/80 backdrop-blur-sm rounded-lg p-6 animate-st-fade-in">
+          <Terminal 
+            content={generateDetailContent(showingDetails)}
+            typingSpeed={5}
+          />
+        </div>
         <button
           onClick={handleBackToList}
-          className="st-button px-4 py-2 font-mono text-sm"
+          className="st-button px-4 py-2 font-mono text-sm hover:scale-105 transition-transform"
         >
           [BACK TO LIST]
         </button>
