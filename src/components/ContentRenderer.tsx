@@ -45,7 +45,7 @@ const ContentRenderer = ({ section }: ContentRendererProps) => {
   };
 
   const renderAbout = () => (
-    <Terminal content={generateAboutContent()} typingSpeed={40} />
+    <Terminal content={generateAboutContent()} typingSpeed={10} />
   );
 
   const renderProjects = () => (
@@ -70,7 +70,7 @@ const ContentRenderer = ({ section }: ContentRendererProps) => {
   };
 
   const renderSkills = () => (
-    <Terminal content={generateSkillsContent()} typingSpeed={40} />
+    <Terminal content={generateSkillsContent()} typingSpeed={10} />
   );
 
   const generateExtraContent = () => {
@@ -95,7 +95,7 @@ const ContentRenderer = ({ section }: ContentRendererProps) => {
   };
 
   const renderExtra = () => (
-    <Terminal content={generateExtraContent()} typingSpeed={40} />
+    <Terminal content={generateExtraContent()} typingSpeed={10} />
   );
 
   const sectionRenderers: Record<string, () => JSX.Element> = {

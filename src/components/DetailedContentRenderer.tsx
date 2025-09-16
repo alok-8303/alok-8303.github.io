@@ -80,7 +80,7 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
       <div className="space-y-4">
         <Terminal 
           content={generateDetailContent(showingDetails)}
-          typingSpeed={30}
+          typingSpeed={10}
         />
         <button
           onClick={handleBackToList}
@@ -96,7 +96,7 @@ const DetailedContentRenderer = ({ section }: DetailedContentRendererProps) => {
     <div className="space-y-4">
       <Terminal 
         content={generateHeadingsContent()}
-        typingSpeed={40}
+        typingSpeed={10}
       />
       <div className="grid gap-2 mt-4">
         {data.map((_, index) => (
